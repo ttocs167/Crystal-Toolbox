@@ -17,7 +17,7 @@ void CrystalToolbox::UpdateCrystal(){
         ImGui::Begin("Custom window!", nullptr, ImGuiWindowFlags_MenuBar);
         {
             ImGui::Text("Desired crystal size");
-            ImGui::SliderInt(" ", &m_Crystal.maxCrystalSize, 10, 20000);
+            ImGui::SliderInt(" ", &m_Crystal.maxCrystalSize, 10, 30000);
 
             ImGui::SliderInt("Growth Speed", &growthSpeed, 1, 30);
 
@@ -67,7 +67,8 @@ void CrystalToolbox::ImageWindow() {
 
         //TODO update image here. Without memory leaks this time
 
-        UpdateCrystalImage(&m_Crystal, &my_texture);
+        if (m_Crystal.isGrowing)
+            UpdateCrystalImage(&m_Crystal, &my_texture);
 
         ImGui::Image((ImTextureID)my_texture.DS, ImVec2(my_texture.Width, my_texture.Height));
 
